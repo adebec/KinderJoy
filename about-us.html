@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - KinderJoy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #f2f7ff; }
+        .member-card:hover { transform: translateY(-10px); }
+        .pastel-green { background-color: #D1FFD7; }
+        .pastel-blue { background-color: #D1EFFF; }
+        .pastel-yellow { background-color: #FFFED1; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <nav class="p-5 flex justify-between items-center bg-white shadow-sm sticky top-0 z-50">
+        <h1 class="text-2xl font-bold text-blue-400">KinderJoy.</h1>
+        <div class="space-x-6 flex">
+            <a href="beranda.html" class="hover:text-blue-400">Beranda</a>
+            <a href="about_us.html" class="text-blue-500 font-semibold border-b-2 border-blue-400">About Us</a>
+            <a href="projects.html" class="hover:text-blue-400">Projects</a>
+            <a href="galleries.html" class="hover:text-blue-400">Galleries</a>
+            <a href="contact_us.html" class="hover:text-blue-400">Contact Us</a>
+        </div>
+    </nav>
+
+    <header class="py-16 text-center">
+        <h2 class="text-4xl font-bold text-gray-700">Meet Our Team</h2>
+        <p class="text-gray-500 mt-2">6 Individu, 1 Visi Informatika</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pb-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Anggota 1 -->
+        <div class="member-card bg-white p-6 rounded-3xl shadow-lg transition-all duration-300">
+            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden border-4 border-blue-200">
+                <img src="https://lh3.googleusercontent.com/d/1ZRnAp10UyESQPkKpN-JsbC0iXRnRUC51" alt="Leader">
+            </div>
+            <h3 class="text-xl font-bold text-center">Adelia Destary</h3>
+            <p class="text-blue-500 font-medium text-center mb-4">Project Leader</p>
+            <p class="text-gray-600 text-sm text-center">Bertanggung jawab atas manajemen tim dan pengambilan keputusan teknis utama.</p>
+        </div>
+
+        <!-- Anggota 2 -->
+        <div class="member-card bg-white p-6 rounded-3xl shadow-lg transition-all duration-300">
+            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden border-4 border-pink-200">
+                <img src="https://lh3.googleusercontent.com/d/1BfrtznXbywulCXRWZ0RtQky6TFJj7b2W" alt="Designer">
+            </div>
+            <h3 class="text-xl font-bold text-center">Ulfi Kholidiyah</h3>
+            <p class="text-pink-500 font-medium text-center mb-4">UI/UX Designer</p>
+            <p class="text-gray-600 text-sm text-center">Penyusun estetika visual dan pengalaman pengguna yang nyaman di setiap web.</p>
+        </div>
+
+        <!-- Anggota 3 -->
+        <div class="member-card bg-white p-6 rounded-3xl shadow-lg transition-all duration-300">
+            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden border-4 border-green-200">
+                <img src="https://lh3.googleusercontent.com/d/1La1bXZBNahSnb964bRjxyb-Jy9ppfMVG" alt="Coder">
+            </div>
+            <h3 class="text-xl font-bold text-center">Raya Davina</h3>
+            <p class="text-green-500 font-medium text-center mb-4">Frontend Dev</p>
+            <p class="text-gray-600 text-sm text-center">Mengonversi desain menjadi kode interaktif yang responsif dan cepat.</p>
+        </div>
+
+        <!-- Anggota 4 -->
+        <div class="member-card bg-white p-6 rounded-3xl shadow-lg transition-all duration-300">
+            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden border-4 border-yellow-200">
+                <img src="https://lh3.googleusercontent.com/d/1lLOX4v19QSNsdroapmX_lADMvF10ppqI" alt="Data">
+            </div>
+            <h3 class="text-xl font-bold text-center">Febi Wulandari</h3>
+            <p class="text-yellow-500 font-medium text-center mb-4">Data Analyst</p>
+            <p class="text-gray-600 text-sm text-center">Mengolah data dan memastikan struktur informasi dalam proyek tertata rapi.</p>
+        </div>
+
+        <!-- Anggota 5 -->
+        <div class="member-card bg-white p-6 rounded-3xl shadow-lg transition-all duration-300">
+            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden border-4 border-purple-200">
+                <img src="https://lh3.googleusercontent.com/d/1sLT6NI_gGYZguJeTHZ7-Kjs3sSa33UC0" alt="QA">
+            </div>
+            <h3 class="text-xl font-bold text-center">Elisabeth</h3>
+            <p class="text-purple-500 font-medium text-center mb-4">Quality Assurance</p>
+            <p class="text-gray-600 text-sm text-center">Mencari bug dan memastikan aplikasi berjalan tanpa error sebelum dipublish.</p>
+        </div>
+
+        <!-- Anggota 6 -->
+        <div class="member-card bg-white p-6 rounded-3xl shadow-lg transition-all duration-300">
+            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden border-4 border-red-200">
+                <img src="https://lh3.googleusercontent.com/d/1rQRrafGautm6_tIFOauj8VGQe5phLGDd" alt="Content">
+            </div>
+            <h3 class="text-xl font-bold text-center">Mikaela Sabiya</h3>
+            <p class="text-red-500 font-medium text-center mb-4">Content Creator</p>
+            <p class="text-gray-600 text-sm text-center">Penyusun aset visual, video, dan narasi yang menarik untuk dokumentasi tim.</p>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - KinderJoy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #f7f2ff; }
+        .contact-form input, .contact-form textarea {
+            background-color: #ffffff;
+            border: 2px solid #e9d5ff;
+            border-radius: 12px;
+            padding: 12px;
+            width: 100%;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .contact-form input:focus { border-color: #a855f7; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <nav class="p-5 flex justify-between items-center bg-white shadow-sm sticky top-0 z-50">
+        <h1 class="text-2xl font-bold text-purple-400">KinderJoy.</h1>
+        <div class="space-x-6 flex">
+            <a href="beranda.html" class="hover:text-purple-400 transition">Beranda</a>
+            <a href="about_us.html" class="hover:text-purple-400 transition">About Us</a>
+            <a href="projects.html" class="hover:text-purple-400 transition">Projects</a>
+            <a href="galleries.html" class="hover:text-purple-400 transition">Galleries</a>
+            <a href="contact_us.html" class="text-purple-500 font-semibold border-b-2 border-purple-400">Contact Us</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid md:grid-cols-2 gap-12">
+            <!-- Contact Info -->
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Hubungi Kami</h2>
+                <p class="text-gray-600 mb-8">Punya ide proyek menarik atau sekadar ingin menyapa? Silakan kirim pesan melalui formulir atau kunjungi markas tim kami.</p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-3 bg-purple-100 rounded-lg text-purple-500">📍</div>
+                        <div>
+                            <h4 class="font-bold">Alamat</h4>
+                            <p class="text-gray-500 text-sm">Lab Komputer Informatika, Gedung XII, SMA Negeri 45 Jakarta</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="p-3 bg-purple-100 rounded-lg text-purple-500">✉️</div>
+                        <div>
+                            <h4 class="font-bold">Email</h4>
+                            <p class="text-gray-500 text-sm">tim.kinderjoy@example.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Maps Mockup -->
+                <div class="mt-10 h-64 bg-gray-200 rounded-3xl overflow-hidden shadow-inner relative border-4 border-white">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.6682757282!2d106.9030091747502!3d-6.175145593812217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f4d610348237%3A0x7fcd6e66cec1b69b!2sSMA%20NEGERI%2045%20JAKARTA%20Utara!5e0!3m2!1sid!2sid!4v1772704019870!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" 
+                            class="w-full h-full grayscale opacity-80" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="absolute inset-0 bg-purple-200 opacity-10 pointer-events-none"></div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="bg-white p-8 rounded-3xl shadow-xl">
+                <form class="contact-form space-y-4">
+                    <div>
+                        <label class="text-sm font-semibold text-gray-600 mb-1 block">Nama Lengkap</label>
+                        <input type="text" placeholder="Masukkan nama Anda...">
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold text-gray-600 mb-1 block">Email</label>
+                        <input type="email" placeholder="email@example.com">
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold text-gray-600 mb-1 block">Pesan</label>
+                        <textarea rows="4" placeholder="Apa yang ingin Anda sampaikan?"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-purple-500 text-white font-bold py-4 rounded-xl hover:bg-purple-600 transition-colors shadow-lg">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
