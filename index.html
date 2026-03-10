@@ -15,15 +15,15 @@
             position: relative;
         }
 
-        /* Container untuk elemen terbang - DIPASTIKAN TIDAK MENGHALANGI KLIK */
+        /* Container untuk elemen terbang */
         .floating-elements {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Penting: agar klik tembus ke tombol di bawahnya */
-            z-index: 1; /* Di bawah konten utama */
+            pointer-events: none; 
+            z-index: 1; 
         }
 
         .element {
@@ -35,6 +35,177 @@
 
         @keyframes floatUp {
             0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Styling Jam Analog */
+        .clock {
+            width: 140px;
+            height: 140px;
+            border: 6px solid #f06292; /* Warna Pink */
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            position: relative;
+            background: white;
+            box-shadow: 0 8px 20px rgba(240, 98, 146, 0.2);
+        }
+
+        .clock::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #f06292;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            border-radius: 10px;
+            z-index: 5;
+        }
+
+        .hour-hand { width: 4px; height: 30px; background: #4a4a4a; }
+        .min-hand { width: 3px; height: 45px; background: #757575; }
+        .second-hand { width: 2px; height: 55px; background: #f06292; }
+
+        /* Styling Jam Digital */
+        .digital-clock {
+            font-family: 'Orbitron', sans-serif;
+            background: #f06292;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(240, 98, 146, 0.3);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .nav-link-active {
+            color: #f06292;
+            font-weight: 600;
+            border-bottom: 2px solid #f06292;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Efek Elemen Berterbangan -->
+    <div class="floating-elements" id="floating-container"></div>
+
+    <!-- Navigasi -->
+    <nav class="p-5 flex justify-between items-center bg-white shadow-sm sticky top-0 z-50">
+        <h1 class="text-2xl font-bold text-pink-500">KinderJoy.</h1>
+        <div class="space-x-6 flex">
+            <a href="index.html" class="nav-link-active">Beranda</a>
+            <a href="about-us.html" class="hover:text-pink-400 transition">About Us</a>
+            <a href="project.html" class="hover:text-pink-400 transition">Projects</a>
+            <a href="galleries.html" class="hover:text-pink-400 transition">Galleries</a>
+            <a href="contact-us.html" class="hover:text-pink-400 transition">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Konten Hero -->
+    <main class="content-wrapper flex-grow flex flex-col items-center justify-center text-center px-6 py-10">
+        
+        <!-- Widget Jam -->
+        <div class="flex flex-col items-center">
+            <!-- Jam Analog -->
+            <div class="clock">
+                <div class="hand hour-hand" id="hour-hand"></div>
+                <div class="hand min-hand" id="min-hand"></div>
+                <div class="hand second-hand" id="second-hand"></div>
+            </div>
+            <!-- Jam Digital -->
+            <div class="digital-clock" id="digital-clock">00:00:00</div>
+        </div>
+
+        <div class="bg-white/80 backdrop-blur-md p-10 rounded-3xl shadow-xl max-w-2xl border border-pink-100">
+            <h2 class="text-5xl font-bold text-gray-800 mb-6">Selamat Datang di <span class="text-pink-500">KinderJoy</span></h2>
+            <p class="text-gray-600 text-lg leading-relaxed">
+                Wadah kreativitas dan inovasi tim Informatika Kelas XII. Kami percaya bahwa teknologi adalah kunci masa depan yang penuh warna dan cinta.
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-6 text-center text-gray-400 bg-white/80 backdrop-blur-sm border-t relative z-10">
+        <p>&copy; 2024 Tim KinderJoy XII. Dibuat dengan 💖 untuk Informatika.</p>
+    </footer>
+
+    <script>
+        // Logika Jam Analog & Digital
+        function updateClocks() {
+            const now = new Date();
+            
+            // Analog
+            const seconds = now.getSeconds();
+            const mins = now.getMinutes();
+            const hours = now.getHours();
+
+            const secondDegrees = ((seconds / 60) * 360);
+            const minDegrees = ((mins / 60) * 360) + ((seconds / 60) * 6);
+            const hourDegrees = ((hours / 12) * 360) + ((mins / 60) * 30);
+
+            const sHand = document.getElementById('second-hand');
+            const mHand = document.getElementById('min-hand');
+            const hHand = document.getElementById('hour-hand');
+
+            if(sHand) sHand.style.transform = `translateX(-50%) rotate(${secondDegrees}deg)`;
+            if(mHand) mHand.style.transform = `translateX(-50%) rotate(${minDegrees}deg)`;
+            if(hHand) hHand.style.transform = `translateX(-50%) rotate(${hourDegrees}deg)`;
+
+            // Digital
+            const h = String(hours).padStart(2, '0');
+            const m = String(mins).padStart(2, '0');
+            const s = String(seconds).padStart(2, '0');
+            const digitalEl = document.getElementById('digital-clock');
+            if(digitalEl) digitalEl.textContent = `${h}:${m}:${s}`;
+        }
+
+        // Script untuk elemen terbang
+        function createFloatingElements() {
+            const container = document.getElementById('floating-container');
+            if(!container) return;
+
+            const icons = ['💖', '⭐', '✨', '💗', '🌟', '🌸'];
+            
+            setInterval(() => {
+                const element = document.createElement('div');
+                const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+                element.className = 'element';
+                element.innerHTML = randomIcon;
+                element.style.left = Math.random() * 100 + 'vw';
+                const duration = Math.random() * 10 + 5;
+                element.style.animationDuration = duration + 's';
+                element.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(element);
+                setTimeout(() => element.remove(), duration * 1000);
+            }, 800);
+        }
+
+        setInterval(updateClocks, 1000);
+        updateClocks(); 
+        createFloatingElements();
+    </script>
+
+</body>
+</html>            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
             10% { opacity: 0.6; }
             90% { opacity: 0.6; }
             100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
@@ -372,4 +543,5 @@
 
 </body>
 </html>
+
 
