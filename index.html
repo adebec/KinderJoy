@@ -5,54 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda - KinderJoy</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@500&display=swap');
         
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fdf2f2; /* Soft Pastel Pinkish White */
-        }
-        
-        .pastel-gradient {
-            background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #fff0f6; /* Nuansa Pink Sangat Muda */
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .running-text {
-            white-space: nowrap;
-            overflow: hidden;
-            background: #FFD1DC;
-            padding: 10px 0;
-            font-weight: bold;
-            color: #6d6d6d;
+        /* Container untuk elemen terbang */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .running-text span {
+        .element {
+            position: absolute;
+            bottom: -50px;
+            opacity: 0.6;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Styling Jam Analog */
+        .clock {
+            width: 140px;
+            height: 140px;
+            border: 6px solid #f06292; /* Warna Pink */
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            position: relative;
+            background: white;
+            box-shadow: 0 8px 20px rgba(240, 98, 146, 0.2);
+        }
+
+        .clock::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #f06292;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            border-radius: 10px;
+            z-index: 5;
+        }
+
+        .hour-hand { width: 4px; height: 30px; background: #4a4a4a; }
+        .min-hand { width: 3px; height: 45px; background: #757575; }
+        .second-hand { width: 2px; height: 55px; background: #f06292; }
+
+        /* Styling Jam Digital */
+        .digital-clock {
+            font-family: 'Orbitron', sans-serif;
+            background: #f06292;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(240, 98, 146, 0.3);
             display: inline-block;
-            padding-left: 100%;
-            animation: marquee 15s linear infinite;
+            margin-bottom: 20px;
         }
 
-        @keyframes marquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .nav-link-active {
+            color: #f06292;
+            font-weight: 600;
+            border-bottom: 2px solid #f06292;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <!-- Navigation -->
+    <!-- Efek Elemen Berterbangan -->
+    <div class="floating-elements" id="floating-container"></div>
+
+    <!-- Navigasi -->
     <nav class="p-5 flex justify-between items-center bg-white shadow-sm sticky top-0 z-50">
-        <h1 class="text-2xl font-bold text-pink-400">KinderJoy.</h1>
-        <div class="space-x-6 hidden md:flex">
-            <a href="index.html" class="text-pink-500 font-semibold border-b-2 border-pink-400">Beranda</a>
+        <h1 class="text-2xl font-bold text-pink-500">KinderJoy.</h1>
+        <div class="space-x-6 flex">
+            <a href="index.html" class="nav-link-active">Beranda</a>
             <a href="about-us.html" class="hover:text-pink-400 transition">About Us</a>
             <a href="project.html" class="hover:text-pink-400 transition">Projects</a>
             <a href="galleries.html" class="hover:text-pink-400 transition">Galleries</a>
@@ -60,56 +115,86 @@
         </div>
     </nav>
 
-    <!-- Running Text -->
-    <div class="running-text">
-        <span>Informatics Is Our Future • Informatics Is Our Future • Informatics Is Our Future • Informatics Is Our Future</span>
-    </div>
-
-    <!-- Hero Section -->
-    <main class="flex-grow flex flex-col items-center justify-center px-6 py-12">
-        <div class="max-w-4xl w-full text-center">
-            <!-- Widget Jam Digital -->
-            <div id="clock" class="text-4xl md:text-6xl font-bold text-gray-700 mb-8 tracking-widest animate__animated animate__fadeInDown">00:00:00</div>
-            
-            <div class="glass-card p-10 shadow-xl mb-10">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-blue-400 mb-4 animate__animated animate__zoomIn">"Code with Heart, Build the Future"</h2>
-                <p class="text-gray-600 text-lg md:text-xl leading-relaxed">
-                    Kami adalah Tim Informatika XII - KinderJoy. Sekelompok kreator muda yang berdedikasi untuk mengubah ide menjadi solusi digital yang bermakna dan menyenangkan.
-                </p>
+    <!-- Konten Hero -->
+    <main class="flex-grow flex flex-col items-center justify-center text-center px-6 relative z-10 py-10">
+        
+        <!-- Widget Jam -->
+        <div class="flex flex-col items-center">
+            <!-- Jam Analog -->
+            <div class="clock">
+                <div class="hand hour-hand" id="hour-hand"></div>
+                <div class="hand min-hand" id="min-hand"></div>
+                <div class="hand second-hand" id="second-hand"></div>
             </div>
+            <!-- Jam Digital -->
+            <div class="digital-clock" id="digital-clock">00:00:00</div>
+        </div>
 
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <!-- Foto Programmer (Pengganti Video) -->
-                <div class="rounded-2xl overflow-hidden shadow-lg aspect-video bg-gray-200 animate__animated animate__fadeInLeft">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" 
-                         alt="Programmer Bekerja" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                </div>
-                <!-- Gambar Animasi Teknologi -->
-                <div class="rounded-2xl overflow-hidden shadow-lg animate__animated animate__fadeInRight">
-                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" 
-                         alt="Teknologi Masa Depan" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                </div>
+        <div class="bg-white/80 backdrop-blur-md p-10 rounded-3xl shadow-xl max-w-2xl border border-pink-100">
+            <h2 class="text-5xl font-bold text-gray-800 mb-6">Selamat Datang di <span class="text-pink-500">KinderJoy</span></h2>
+            <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                Wadah kreativitas dan inovasi tim Informatika Kelas XII. Kami percaya bahwa teknologi adalah kunci masa depan yang penuh warna dan cinta.
+            </p>
+            <div class="flex gap-4 justify-center">
+                <a href="projects.html" class="bg-pink-500 hover:bg-pink-600 text-white px-8 py-3 rounded-full font-semibold transition-all shadow-lg hover:scale-105 transform">Lihat Proyek</a>
+                <a href="about_us.html" class="bg-white border-2 border-pink-500 text-pink-600 px-8 py-3 rounded-full font-semibold hover:bg-pink-50 transition-all hover:scale-105 transform">Tentang Kami</a>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white p-6 text-center text-gray-400 border-t">
-        <p>&copy; 2024 Tim KinderJoy XII. Informatics Is Our Future.</p>
+    <footer class="p-6 text-center text-gray-400 bg-white/80 backdrop-blur-sm border-t relative z-10">
+        <p>&copy; 2024 Tim KinderJoy XII. Dibuat dengan 💖 untuk Informatika.</p>
     </footer>
 
     <script>
-        // Logika Jam Digital
-        function updateClock() {
+        // Logika Jam Analog & Digital
+        function updateClocks() {
             const now = new Date();
-            const h = String(now.getHours()).padStart(2, '0');
-            const m = String(now.getMinutes()).padStart(2, '0');
-            const s = String(now.getSeconds()).padStart(2, '0');
-            document.getElementById('clock').textContent = `${h}:${m}:${s}`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
-</body>
+            
+            // Analog
+            const seconds = now.getSeconds();
+            const mins = now.getMinutes();
+            const hours = now.getHours();
 
+            const secondDegrees = ((seconds / 60) * 360);
+            const minDegrees = ((mins / 60) * 360) + ((seconds / 60) * 6);
+            const hourDegrees = ((hours / 12) * 360) + ((mins / 60) * 30);
+
+            document.getElementById('second-hand').style.transform = `translateX(-50%) rotate(${secondDegrees}deg)`;
+            document.getElementById('min-hand').style.transform = `translateX(-50%) rotate(${minDegrees}deg)`;
+            document.getElementById('hour-hand').style.transform = `translateX(-50%) rotate(${hourDegrees}deg)`;
+
+            // Digital
+            const h = String(hours).padStart(2, '0');
+            const m = String(mins).padStart(2, '0');
+            const s = String(seconds).padStart(2, '0');
+            document.getElementById('digital-clock').textContent = `${h}:${m}:${s}`;
+        }
+
+        // Script untuk elemen terbang
+        function createFloatingElements() {
+            const container = document.getElementById('floating-container');
+            const icons = ['💖', '⭐', '✨', '💗', '🌟', '🌸'];
+            
+            setInterval(() => {
+                const element = document.createElement('div');
+                const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+                element.className = 'element';
+                element.innerHTML = randomIcon;
+                element.style.left = Math.random() * 100 + 'vw';
+                const duration = Math.random() * 10 + 5;
+                element.style.animationDuration = duration + 's';
+                element.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(element);
+                setTimeout(() => element.remove(), duration * 1000);
+            }, 600);
+        }
+
+        setInterval(updateClocks, 1000);
+        updateClocks(); 
+        createFloatingElements();
+    </script>
+
+</body>
 </html>
